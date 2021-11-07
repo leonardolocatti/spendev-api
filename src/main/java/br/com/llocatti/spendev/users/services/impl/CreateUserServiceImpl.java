@@ -7,12 +7,15 @@ import br.com.llocatti.spendev.users.mappers.UsersMapper;
 import br.com.llocatti.spendev.users.repositories.UsersRepository;
 import br.com.llocatti.spendev.users.services.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class CreateUserServiceImpl implements CreateUserService {
 
   @Autowired private UsersRepository usersRepository;
+
+  @Autowired private PasswordEncoder passwordEncoder;
 
   @Override
   public CreateUserResponse execute(CreateUserRequest createUserRequest) {
@@ -25,6 +28,8 @@ public class CreateUserServiceImpl implements CreateUserService {
     if (findUser.isPresent()) {
       throw new BusinessException("Email already used by another user");
     }
+
+    createUserRequest.setPassword(passwordEncoder.encode(createUserRequest.getPassword()));
 
     var user = UsersMapper.toEntity(createUserRequest);
 

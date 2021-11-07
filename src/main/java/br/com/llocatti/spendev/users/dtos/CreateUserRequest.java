@@ -53,4 +53,8 @@ public class CreateUserRequest {
   public User toEntity() {
     return new User(name, email, password);
   }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
 }

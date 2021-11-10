@@ -49,6 +49,12 @@
     </dependency>
 
     <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>3.18.2</version>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
@@ -91,6 +97,7 @@
           <excludes>
             <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>
             <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>
+            <exclude>br/com/llocatti/spendev/sessions/configs/SecurityConfigs.class</exclude>
           </excludes>
         </configuration>
       </plugin>

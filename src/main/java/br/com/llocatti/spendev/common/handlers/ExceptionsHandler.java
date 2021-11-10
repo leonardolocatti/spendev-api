@@ -5,6 +5,8 @@ import br.com.llocatti.spendev.common.dtos.BusinessError;
 import br.com.llocatti.spendev.common.dtos.Field;
 import br.com.llocatti.spendev.common.dtos.ValidationError;
 import br.com.llocatti.spendev.common.exceptions.BusinessException;
+import br.com.llocatti.spendev.sessions.dtos.AuthenticationError;
+import br.com.llocatti.spendev.sessions.exceptions.AuthenticationException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -51,5 +53,12 @@ public class ExceptionsHandler {
     var businessError = new BusinessError(ex.getMessage());
 
     return ResponseEntity.status(businessError.getHttpStatus()).body(businessError);
+  }
+
+  @ExceptionHandler(AuthenticationException.class)
+  public ResponseEntity<AuthenticationError> authenticationException(AuthenticationException ex) {
+    var authenticationError = new AuthenticationError(ex.getMessage());
+
+    return ResponseEntity.status(authenticationError.getHttpStatus()).body(authenticationError);
   }
 }

@@ -9,5 +9,7 @@ spring:
       hibernate:
         format_sql: true
 security:
-  jwt:
+  token:
     secret: secretjwt
+    issuer: spendev-api
+    seconds-to-expire: 900

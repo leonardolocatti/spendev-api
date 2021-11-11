@@ -3,8 +3,8 @@ package br.com.llocatti.spendev.sessions.services.impl;
 import br.com.llocatti.spendev.sessions.dtos.CreateSessionRequest;
 import br.com.llocatti.spendev.sessions.dtos.CreateSessionResponse;
 import br.com.llocatti.spendev.sessions.exceptions.AuthenticationException;
+import br.com.llocatti.spendev.sessions.providers.TokenProvider;
 import br.com.llocatti.spendev.sessions.services.CreateSessionService;
-import br.com.llocatti.spendev.sessions.utils.JwtUtils;
 import br.com.llocatti.spendev.users.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +17,7 @@ public class CreateSessionServiceImpl implements CreateSessionService {
 
   @Autowired private PasswordEncoder passwordEncoder;
 
-  @Autowired private JwtUtils jwtUtils;
+  @Autowired private TokenProvider tokenProvider;
 
   @Override
   public CreateSessionResponse execute(CreateSessionRequest createSessionRequest) {
@@ -32,7 +32,7 @@ public class CreateSessionServiceImpl implements CreateSessionService {
       throw new AuthenticationException("Wrong email/password combination");
     }
 
-    var token = jwtUtils.createToken(findUser.get().getId().toString());
+    var token = tokenProvider.generateToken(findUser.get().getId().toString());
 
     return new CreateSessionResponse(token);
   }

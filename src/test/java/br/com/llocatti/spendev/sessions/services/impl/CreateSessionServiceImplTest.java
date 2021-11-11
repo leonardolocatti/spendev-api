@@ -2,7 +2,7 @@ package br.com.llocatti.spendev.sessions.services.impl;
 
 import br.com.llocatti.spendev.sessions.exceptions.AuthenticationException;
 import br.com.llocatti.spendev.sessions.mocks.SessionsMock;
-import br.com.llocatti.spendev.sessions.utils.JwtUtils;
+import br.com.llocatti.spendev.sessions.providers.TokenProvider;
 import br.com.llocatti.spendev.users.mocks.UsersMock;
 import br.com.llocatti.spendev.users.repositories.UsersRepository;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +11,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
@@ -21,6 +22,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(SpringExtension.class)
+@ActiveProfiles("test")
 class CreateSessionServiceImplTest {
 
   @InjectMocks CreateSessionServiceImpl createSessionService;
@@ -29,7 +31,7 @@ class CreateSessionServiceImplTest {
 
   @Mock PasswordEncoder passwordEncoder;
 
-  @Mock JwtUtils jwtUtils;
+  @Mock TokenProvider tokenProvider;
 
   @Test
   @DisplayName("Should be able to create new session")
@@ -42,7 +44,7 @@ class CreateSessionServiceImplTest {
 
     when(passwordEncoder.matches(anyString(), anyString())).thenReturn(Boolean.TRUE);
 
-    when(jwtUtils.createToken(anyString())).thenReturn("token");
+    when(tokenProvider.generateToken(anyString())).thenReturn("token");
 
     var createSessionResponse = createSessionService.execute(createSessionRequest);
 

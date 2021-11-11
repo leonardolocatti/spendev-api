@@ -66,6 +66,12 @@
       <artifactId>spring-boot-starter-test</artifactId>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -97,7 +103,7 @@
           <excludes>
             <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>
             <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>
-            <exclude>br/com/llocatti/spendev/sessions/configs/SecurityConfigs.class</exclude>
+            <!--            <exclude>br/com/llocatti/spendev/sessions/configs/SecurityConfigs.class</exclude>-->
           </excludes>
         </configuration>
       </plugin>

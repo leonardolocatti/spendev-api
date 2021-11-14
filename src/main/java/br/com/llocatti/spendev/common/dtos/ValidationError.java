@@ -20,4 +20,9 @@ public class ValidationError extends ApplicationError {
   public List<Field> getFields() {
     return fields;
   }
+
+  @Override
+  public String toString() {
+    return "ValidationError{" + "fields=" + fields + '}';
+  }
 }

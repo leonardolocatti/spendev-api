@@ -17,4 +17,9 @@ public class Field {
   public String getMessage() {
     return message;
   }
+
+  @Override
+  public String toString() {
+    return "Field{" + "name='" + name + '\'' + ", message='" + message + '\'' + '}';
+  }
 }

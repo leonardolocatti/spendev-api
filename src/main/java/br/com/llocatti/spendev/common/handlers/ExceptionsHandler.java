@@ -32,6 +32,8 @@ public class ExceptionsHandler {
                 validationError.addField(
                     new Field(fieldError.getField(), fieldError.getDefaultMessage())));
 
+    logger.debug("Validation error occurred: {}", validationError);
+
     return ResponseEntity.status(validationError.getHttpStatus()).body(validationError);
   }
 
@@ -52,12 +54,16 @@ public class ExceptionsHandler {
   public ResponseEntity<BusinessError> businessException(BusinessException ex) {
     var businessError = new BusinessError(ex.getMessage());
 
+    logger.debug("Business exception occurred: {}", businessError.getMessage());
+
     return ResponseEntity.status(businessError.getHttpStatus()).body(businessError);
   }
 
   @ExceptionHandler(AuthenticationException.class)
   public ResponseEntity<AuthenticationError> authenticationException(AuthenticationException ex) {
     var authenticationError = new AuthenticationError(ex.getMessage());
+
+    logger.debug("Authentication exception occurred: {}", ex.getMessage());
 
     return ResponseEntity.status(authenticationError.getHttpStatus()).body(authenticationError);
   }

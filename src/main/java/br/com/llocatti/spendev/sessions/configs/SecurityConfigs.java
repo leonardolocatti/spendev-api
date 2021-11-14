@@ -34,8 +34,11 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
   private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
 
   private static final String[] PUBLIC_MATCHERS_POST = {"/api/v1/users", "/api/v1/sessions"};
+
   @Autowired private TokenProvider tokenProvider;
+
   @Autowired private Environment environment;
+
   @Autowired private UserDetailsService userDetailsService;
 
   @Override

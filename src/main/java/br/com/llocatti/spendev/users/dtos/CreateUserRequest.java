@@ -46,6 +46,10 @@ public class CreateUserRequest {
     return password;
   }
 
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
   public String getPasswordConfirmation() {
     return passwordConfirmation;
   }
@@ -54,7 +58,21 @@ public class CreateUserRequest {
     return new User(name, email, password);
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  @Override
+  public String toString() {
+    return "CreateUserRequest{"
+        + "name='"
+        + name
+        + '\''
+        + ", email='"
+        + email
+        + '\''
+        + ", password='"
+        + password
+        + '\''
+        + ", passwordConfirmation='"
+        + passwordConfirmation
+        + '\''
+        + '}';
   }
 }

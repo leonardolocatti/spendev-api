@@ -34,13 +34,9 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
   private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
 
   private static final String[] PUBLIC_MATCHERS_POST = {"/api/v1/users", "/api/v1/sessions"};
-  private final TokenProvider tokenProvider;
+  @Autowired private TokenProvider tokenProvider;
   @Autowired private Environment environment;
   @Autowired private UserDetailsService userDetailsService;
-
-  public SecurityConfigs() {
-    this.tokenProvider = new JwtTokenProvider();
-  }
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -72,6 +68,11 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
   @Bean
   public BCryptPasswordEncoder bCryptPasswordEncoder() {
     return new BCryptPasswordEncoder();
+  }
+
+  @Bean
+  public JwtTokenProvider jwtTokenProvider() {
+    return new JwtTokenProvider();
   }
 
   public static final class EntryPoint implements AuthenticationEntryPoint {

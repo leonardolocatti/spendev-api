@@ -1,5 +1,6 @@
 package br.com.llocatti.spendev.users.dtos;
 
+import br.com.llocatti.spendev.common.utils.Generated;
 import br.com.llocatti.spendev.users.entities.User;
 
 import javax.validation.constraints.Email;
@@ -59,6 +60,7 @@ public class CreateUserRequest {
   }
 
   @Override
+  @Generated
   public String toString() {
     return "CreateUserRequest{"
         + "name='"

@@ -1,9 +1,14 @@
 package br.com.llocatti.spendev.users.entities;
 
+import br.com.llocatti.spendev.wallets.entities.Wallet;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -17,6 +22,9 @@ public class User {
   private String email;
 
   private String password;
+
+  @OneToMany(mappedBy = "user")
+  private final List<Wallet> wallets = new ArrayList<>();
 
   public User() {}
 
@@ -33,6 +41,10 @@ public class User {
     this.name = name;
     this.email = email;
     this.password = password;
+  }
+
+  public User(UUID id) {
+    this.id = id;
   }
 
   public UUID getId() {

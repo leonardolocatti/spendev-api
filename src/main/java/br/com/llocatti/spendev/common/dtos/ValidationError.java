@@ -1,5 +1,6 @@
 package br.com.llocatti.spendev.common.dtos;
 
+import br.com.llocatti.spendev.common.utils.Generated;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
@@ -22,6 +23,7 @@ public class ValidationError extends ApplicationError {
   }
 
   @Override
+  @Generated
   public String toString() {
     return "ValidationError{" + "fields=" + fields + '}';
   }

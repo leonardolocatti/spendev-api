@@ -1,5 +1,7 @@
 package br.com.llocatti.spendev.wallets.dtos;
 
+import br.com.llocatti.spendev.wallets.entities.Wallet;
+
 import java.math.BigDecimal;
 import java.util.UUID;
 
@@ -18,6 +20,11 @@ public class CreateWalletResponse {
     this.name = name;
     this.description = description;
     this.amount = amount;
+  }
+
+  public static CreateWalletResponse fromEntity(Wallet wallet) {
+    return new CreateWalletResponse(
+        wallet.getId(), wallet.getName(), wallet.getDescription(), wallet.getAmount());
   }
 
   public UUID getId() {

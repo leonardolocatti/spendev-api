@@ -37,7 +37,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ExtendWith(SpringExtension.class)
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
-@WithMockUser
+@WithMockUser("c580bf79-577c-433e-b663-1d4e80841013")
 class WalletsControllerTest {
 
   static final String WALLETS_PATH = "/api/v1/wallets";

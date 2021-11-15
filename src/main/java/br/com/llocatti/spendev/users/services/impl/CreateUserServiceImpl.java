@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 public class CreateUserServiceImpl implements CreateUserService {
 
   private final Logger logger = LoggerFactory.getLogger(CreateUserServiceImpl.class);
+
   @Autowired private UsersRepository usersRepository;
+
   @Autowired private PasswordEncoder passwordEncoder;
 
   @Override

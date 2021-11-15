@@ -1,5 +1,6 @@
 package br.com.llocatti.spendev.wallets.controllers;
 
+import br.com.llocatti.spendev.sessions.utils.SessionsUtils;
 import br.com.llocatti.spendev.wallets.dtos.CreateWalletRequest;
 import br.com.llocatti.spendev.wallets.dtos.CreateWalletResponse;
 import br.com.llocatti.spendev.wallets.services.CreateWalletService;
@@ -21,6 +22,8 @@ public class WalletsController {
   @PostMapping
   public ResponseEntity<CreateWalletResponse> createWallet(
       @RequestBody @Valid CreateWalletRequest createWalletRequest) {
+    createWalletRequest.setUserId(SessionsUtils.getAuthenticatedUserId());
+
     var createdWallet = createWalletService.execute(createWalletRequest);
 
     return ResponseEntity.created(null).body(createdWallet);

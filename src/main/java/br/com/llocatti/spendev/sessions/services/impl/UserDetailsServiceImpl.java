@@ -22,7 +22,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     if (findUser.isPresent()) {
       var user = findUser.get();
 
-      return new UserDetailsImpl(user.getEmail(), user.getPassword());
+      return new UserDetailsImpl(user.getId().toString(), user.getPassword());
     }
 
     return null;

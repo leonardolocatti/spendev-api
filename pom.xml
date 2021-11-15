@@ -101,8 +101,8 @@
         </executions>
         <configuration>
           <excludes>
-            <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>
-            <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>
+            <!--            <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>-->
+            <!--            <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>-->
             <!--            <exclude>br/com/llocatti/spendev/sessions/configs/SecurityConfigs.class</exclude>-->
           </excludes>
         </configuration>

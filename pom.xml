@@ -55,6 +55,12 @@
     </dependency>
 
     <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-devtools</artifactId>
       <scope>runtime</scope>
@@ -101,8 +107,8 @@
         </executions>
         <configuration>
           <excludes>
-            <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>
-            <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>
+            <!--            <exclude>br/com/llocatti/spendev/common/SpendevApplication.class</exclude>-->
+            <!--            <exclude>br/com/llocatti/spendev/common/configs/PersistenceConfigs.class</exclude>-->
             <!--            <exclude>br/com/llocatti/spendev/sessions/configs/SecurityConfigs.class</exclude>-->
           </excludes>
         </configuration>

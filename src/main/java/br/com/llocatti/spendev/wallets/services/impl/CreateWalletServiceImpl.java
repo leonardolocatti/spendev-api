@@ -6,17 +6,17 @@ import br.com.llocatti.spendev.wallets.dtos.CreateWalletResponse;
 import br.com.llocatti.spendev.wallets.mappers.WalletsMapper;
 import br.com.llocatti.spendev.wallets.repositories.WalletsRepository;
 import br.com.llocatti.spendev.wallets.services.CreateWalletService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class CreateWalletServiceImpl implements CreateWalletService {
 
-  private final Logger logger = LoggerFactory.getLogger(CreateWalletServiceImpl.class);
-
-  @Autowired private WalletsRepository walletsRepository;
+  @SuppressWarnings("unused")
+  @Autowired
+  private WalletsRepository walletsRepository;
 
   @Override
   public CreateWalletResponse execute(CreateWalletRequest createWalletRequest) {
@@ -24,7 +24,7 @@ public class CreateWalletServiceImpl implements CreateWalletService {
     if (createWalletRequest.getUserId() == null) {
       var authenticationException = new AuthenticationException("Bad credentials");
 
-      logger.warn("{} in {}", authenticationException, createWalletRequest);
+      log.warn("{} in {}", authenticationException, createWalletRequest);
 
       throw authenticationException;
     }

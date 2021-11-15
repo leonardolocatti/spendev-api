@@ -1,6 +1,7 @@
 package br.com.llocatti.spendev.users.entities;
 
 import br.com.llocatti.spendev.wallets.entities.Wallet;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import java.util.UUID;
 
 @Entity
 @Table
+@Data
 public class User {
 
   @Id @GeneratedValue private UUID id;
@@ -45,21 +47,5 @@ public class User {
 
   public User(UUID id) {
     this.id = id;
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getPassword() {
-    return password;
   }
 }

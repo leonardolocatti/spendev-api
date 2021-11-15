@@ -16,8 +16,11 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/sessions")
 public class SessionsController {
 
-  @Autowired private CreateSessionService createSessionService;
+  @SuppressWarnings("unused")
+  @Autowired
+  private CreateSessionService createSessionService;
 
+  @SuppressWarnings("unused")
   @PostMapping
   public ResponseEntity<CreateSessionResponse> createSession(
       @RequestBody @Valid CreateSessionRequest createSessionRequest) {

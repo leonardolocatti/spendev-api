@@ -13,7 +13,9 @@ import java.util.UUID;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-  @Autowired private UsersRepository usersRepository;
+  @SuppressWarnings("unused")
+  @Autowired
+  private UsersRepository usersRepository;
 
   @Override
   public UserDetails loadUserByUsername(String subject) throws UsernameNotFoundException {

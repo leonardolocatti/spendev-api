@@ -4,23 +4,24 @@ import br.com.llocatti.spendev.sessions.providers.TokenProvider;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.util.Calendar;
 import java.util.Date;
 
+@Slf4j
 public class JwtTokenProvider implements TokenProvider {
 
-  private final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
-
+  @SuppressWarnings("unused")
   @Value("${security.token.secret}")
   private String secret;
 
+  @SuppressWarnings("unused")
   @Value("${security.token.issuer}")
   private String issuer;
 
+  @SuppressWarnings("unused")
   @Value("${security.token.seconds-to-expire}")
   private Integer secondsToExpire;
 
@@ -54,7 +55,7 @@ public class JwtTokenProvider implements TokenProvider {
 
       return decodedJwt.getSubject();
     } catch (JWTVerificationException ex) {
-      logger.error("Jwt token parse exception: {}", ex.getMessage());
+      log.error("Jwt token parse exception: {}", ex.getMessage());
 
       return null;
     }

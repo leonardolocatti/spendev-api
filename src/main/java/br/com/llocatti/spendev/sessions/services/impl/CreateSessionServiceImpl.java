@@ -13,11 +13,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class CreateSessionServiceImpl implements CreateSessionService {
 
-  @Autowired private UsersRepository usersRepository;
+  @SuppressWarnings("unused")
+  @Autowired
+  private UsersRepository usersRepository;
 
-  @Autowired private PasswordEncoder passwordEncoder;
+  @SuppressWarnings("unused")
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
-  @Autowired private TokenProvider tokenProvider;
+  @SuppressWarnings("unused")
+  @Autowired
+  private TokenProvider tokenProvider;
 
   @Override
   public CreateSessionResponse execute(CreateSessionRequest createSessionRequest) {

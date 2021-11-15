@@ -5,6 +5,7 @@ import br.com.llocatti.spendev.wallets.dtos.CreateWalletRequest;
 import br.com.llocatti.spendev.wallets.dtos.CreateWalletResponse;
 import br.com.llocatti.spendev.wallets.services.CreateWalletService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +18,11 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/wallets")
 public class WalletsController {
 
-  @Autowired private CreateWalletService createWalletService;
+  @SuppressWarnings("unused")
+  @Autowired
+  private CreateWalletService createWalletService;
 
+  @SuppressWarnings("unused")
   @PostMapping
   public ResponseEntity<CreateWalletResponse> createWallet(
       @RequestBody @Valid CreateWalletRequest createWalletRequest) {
@@ -26,6 +30,6 @@ public class WalletsController {
 
     var createdWallet = createWalletService.execute(createWalletRequest);
 
-    return ResponseEntity.created(null).body(createdWallet);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createdWallet);
   }
 }

@@ -1,21 +1,18 @@
 package br.com.llocatti.spendev.sessions.entities;
 
+import lombok.AllArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
   private final String id;
 
   private final String password;
-
-  public UserDetailsImpl(String id, String password) {
-    this.id = id;
-    this.password = password;
-  }
 
   @Override
   public Collection<? extends GrantedAuthority> getAuthorities() {

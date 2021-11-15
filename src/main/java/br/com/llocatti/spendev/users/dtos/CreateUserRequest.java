@@ -1,12 +1,20 @@
 package br.com.llocatti.spendev.users.dtos;
 
-import br.com.llocatti.spendev.common.utils.Generated;
 import br.com.llocatti.spendev.users.entities.User;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@ToString
 public class CreateUserRequest {
 
   @NotEmpty(message = "The 'name' field must be filled")
@@ -16,6 +24,7 @@ public class CreateUserRequest {
   @Email(message = "The 'email' field must be filled with a valid email")
   private String email;
 
+  @Setter
   @NotEmpty(message = "The 'password' field must be filled")
   @Size(
       min = 6,
@@ -25,56 +34,7 @@ public class CreateUserRequest {
   @NotEmpty(message = "The 'passwordConfirmation' field must be filled")
   private String passwordConfirmation;
 
-  public CreateUserRequest() {}
-
-  public CreateUserRequest(
-      String name, String email, String password, String passwordConfirmation) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.passwordConfirmation = passwordConfirmation;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getEmail() {
-    return email;
-  }
-
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
-  }
-
-  public String getPasswordConfirmation() {
-    return passwordConfirmation;
-  }
-
   public User toEntity() {
     return new User(name, email, password);
-  }
-
-  @Override
-  @Generated
-  public String toString() {
-    return "CreateUserRequest{"
-        + "name='"
-        + name
-        + '\''
-        + ", email='"
-        + email
-        + '\''
-        + ", password='"
-        + password
-        + '\''
-        + ", passwordConfirmation='"
-        + passwordConfirmation
-        + '\''
-        + '}';
   }
 }

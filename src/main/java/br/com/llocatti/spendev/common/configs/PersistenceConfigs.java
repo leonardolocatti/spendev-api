@@ -9,4 +9,5 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @Profile(value = {"prod", "dev"})
 @EnableJpaRepositories("br.com.llocatti.spendev")
 @EntityScan("br.com.llocatti.spendev")
+@SuppressWarnings("unused")
 public class PersistenceConfigs {}

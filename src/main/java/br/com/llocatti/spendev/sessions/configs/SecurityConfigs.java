@@ -21,7 +21,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.AuthenticationEntryPoint;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -29,6 +28,7 @@ import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
+@SuppressWarnings("unused")
 public class SecurityConfigs extends WebSecurityConfigurerAdapter {
 
   private static final String[] PUBLIC_MATCHERS = {"/h2-console/**"};
@@ -85,7 +85,7 @@ public class SecurityConfigs extends WebSecurityConfigurerAdapter {
         HttpServletRequest httpServletRequest,
         HttpServletResponse httpServletResponse,
         AuthenticationException e)
-        throws IOException, ServletException {
+        throws IOException {
       var authenticationError = new AuthenticationError("Bad credentials");
 
       httpServletResponse.setStatus(HttpStatus.UNAUTHORIZED.value());

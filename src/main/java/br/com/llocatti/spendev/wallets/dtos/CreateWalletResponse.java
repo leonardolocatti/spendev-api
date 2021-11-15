@@ -1,10 +1,14 @@
 package br.com.llocatti.spendev.wallets.dtos;
 
 import br.com.llocatti.spendev.wallets.entities.Wallet;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@AllArgsConstructor
+@Getter
 public class CreateWalletResponse {
 
   private final UUID id;
@@ -15,31 +19,8 @@ public class CreateWalletResponse {
 
   private final BigDecimal amount;
 
-  public CreateWalletResponse(UUID id, String name, String description, BigDecimal amount) {
-    this.id = id;
-    this.name = name;
-    this.description = description;
-    this.amount = amount;
-  }
-
   public static CreateWalletResponse fromEntity(Wallet wallet) {
     return new CreateWalletResponse(
         wallet.getId(), wallet.getName(), wallet.getDescription(), wallet.getAmount());
-  }
-
-  public UUID getId() {
-    return id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public String getDescription() {
-    return description;
-  }
-
-  public BigDecimal getAmount() {
-    return amount;
   }
 }

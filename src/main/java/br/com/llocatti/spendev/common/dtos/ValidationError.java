@@ -1,11 +1,14 @@
 package br.com.llocatti.spendev.common.dtos;
 
-import br.com.llocatti.spendev.common.utils.Generated;
+import lombok.Getter;
+import lombok.ToString;
 import org.springframework.http.HttpStatus;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@ToString
 public class ValidationError extends ApplicationError {
 
   private final List<Field> fields = new ArrayList<>();
@@ -16,15 +19,5 @@ public class ValidationError extends ApplicationError {
 
   public void addField(Field field) {
     fields.add(field);
-  }
-
-  public List<Field> getFields() {
-    return fields;
-  }
-
-  @Override
-  @Generated
-  public String toString() {
-    return "ValidationError{" + "fields=" + fields + '}';
   }
 }

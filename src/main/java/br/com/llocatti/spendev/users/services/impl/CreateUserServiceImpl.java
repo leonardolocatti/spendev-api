@@ -6,20 +6,22 @@ import br.com.llocatti.spendev.users.dtos.CreateUserResponse;
 import br.com.llocatti.spendev.users.mappers.UsersMapper;
 import br.com.llocatti.spendev.users.repositories.UsersRepository;
 import br.com.llocatti.spendev.users.services.CreateUserService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
+@Slf4j
 public class CreateUserServiceImpl implements CreateUserService {
 
-  private final Logger logger = LoggerFactory.getLogger(CreateUserServiceImpl.class);
+  @SuppressWarnings("unused")
+  @Autowired
+  private UsersRepository usersRepository;
 
-  @Autowired private UsersRepository usersRepository;
-
-  @Autowired private PasswordEncoder passwordEncoder;
+  @SuppressWarnings("unused")
+  @Autowired
+  private PasswordEncoder passwordEncoder;
 
   @Override
   public CreateUserResponse execute(CreateUserRequest createUserRequest) {
@@ -27,7 +29,7 @@ public class CreateUserServiceImpl implements CreateUserService {
       var businessException =
           new BusinessException("Password and password confirmation do not match");
 
-      logger.debug("{} in {}", businessException.getMessage(), createUserRequest);
+      log.debug("{} in {}", businessException.getMessage(), createUserRequest);
 
       throw businessException;
     }
@@ -37,7 +39,7 @@ public class CreateUserServiceImpl implements CreateUserService {
     if (findUser.isPresent()) {
       var businessException = new BusinessException("Email already used by another user");
 
-      logger.debug("{} in {}", businessException.getMessage(), createUserRequest);
+      log.debug("{} in {}", businessException.getMessage(), createUserRequest);
 
       throw businessException;
     }

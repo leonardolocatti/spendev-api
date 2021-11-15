@@ -4,6 +4,7 @@ import br.com.llocatti.spendev.users.dtos.CreateUserRequest;
 import br.com.llocatti.spendev.users.dtos.CreateUserResponse;
 import br.com.llocatti.spendev.users.services.CreateUserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -16,13 +17,16 @@ import javax.validation.Valid;
 @RequestMapping("/api/v1/users")
 public class UsersController {
 
-  @Autowired private CreateUserService createUserService;
+  @SuppressWarnings("unused")
+  @Autowired
+  private CreateUserService createUserService;
 
+  @SuppressWarnings("unused")
   @PostMapping
   public ResponseEntity<CreateUserResponse> createUser(
       @RequestBody @Valid CreateUserRequest createUserRequest) {
     var createdUser = createUserService.execute(createUserRequest);
 
-    return ResponseEntity.created(null).body(createdUser);
+    return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
   }
 }
